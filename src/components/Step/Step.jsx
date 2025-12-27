@@ -5,16 +5,17 @@ import {
   StepFormBox,
   StepFormInput,
 } from 'components/Step/Step.styled';
+import { setStep } from '../../redux/counter/actions';
 
 const Step = () => {
-  const { step } = useSelector(state => state);
+  const { step } = useSelector(state => state.counter);
 
   const dispatch = useDispatch();
 
   const handleSubmit = e => {
     e.preventDefault();
     const { value } = e.target.elements.step;
-    dispatch({ type: 'setStep', payload: Number(value) });
+    dispatch(setStep(Number(value)));
   };
 
   return (

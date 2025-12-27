@@ -1,25 +1,26 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { CounterBox } from 'components/ReduxCounter/ReduxCounter.styled';
+import { increment, decrement } from '../../redux/counter/actions';
 
 export default function ReduxCounter() {
-  const { total, step } = useSelector(state => state);
+  const { total, step } = useSelector(state => state.counter);
 
   const dispatch = useDispatch();
 
-  const increment = () => dispatch({ type: 'increment', payload: step });
+  const handleIncrement = () => dispatch(increment(step));
 
-  const decrement = () => dispatch({ type: 'decrement', payload: step });
+  const handleDecrement = () => dispatch(decrement(step));
 
   return (
     <CounterBox>
       <h1>Счётчик</h1>
       <p>{total}</p>
       <div>
-        <button type="button" onClick={decrement}>
+        <button type="button" onClick={handleDecrement}>
           Уменьшить
         </button>
 
-        <button type="button" onClick={increment}>
+        <button type="button" onClick={handleIncrement}>
           Увеличить
         </button>
       </div>
